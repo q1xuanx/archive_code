@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef struct hon_So{
-	int a,b,c;	
-}hs;
 int main(){
 	int a[100],b[100];
 	int n = 10;

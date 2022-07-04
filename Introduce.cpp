@@ -1,4 +1,4 @@
-/*
+
 -Hello my name is Nhan
 -Welcome to my first project !! 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6,4 +6,3 @@
 -My instagram link: https://www.instagram.com/qixuanx_/
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SEE YOU SOON !!!
-*/

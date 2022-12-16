@@ -27,16 +27,14 @@ void solve()
 		cout << 0 << "\n";
 		return;
 	}
-	sum = 0;
 	int ans = inf;
 	for (int i = 0; i < n; i++){
-		int cnt = 1;
-		int temp = a[i];
-		while (1){
-			if ((temp + temp/2)%2 == 1) break;
-			else temp/=2; cnt++;
+		int s = a[i], cnt = 0;
+		while (s % 2 == a[i] % 2){
+			a[i] /= 2;
+			cnt++;
 		}
-		ans = (ans < cnt ? ans : cnt);
+		ans = min(cnt,ans);
 	}
 	cout << ans << "\n";
 }

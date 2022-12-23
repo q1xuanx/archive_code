@@ -51,5 +51,5 @@ int main()
 }
 
 /*
--6 -2 0 4 35 
+Time Complex: O(1)
 */

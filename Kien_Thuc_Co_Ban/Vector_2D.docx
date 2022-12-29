@@ -1,0 +1,15 @@
+vt<vt<char>> a;
+	for (int i = 0; i < n; i++){
+		vt<char> t;
+		for (int j = 0; j < n; j++){
+			char x; cin >> x;
+			t.pb(x);
+		}
+		a.pb(t);
+	}
+	for (int i = 0; i < n; i++){
+		for (int j = 0; j < n; j++){
+			cout << a[i][j];
+		}
+		cout << "\n";
+	}

@@ -14,6 +14,25 @@ typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_
 const int inf = 5e3 + 5;
 #define MAX 100003
 // CODE HERE !
+void count_sort(vt<int> &p, vt<int> &c){
+	int n = p.size();
+	vt<int> cnt(n);
+	for (auto x : c){
+		cnt[x]++;
+	}
+	vt<int> p_n(n);
+	vt<int> pos(n);
+	pos[0] = 0;
+	for (int i = 1; i < n; i++){
+		pos[i] = pos[i - 1] + cnt[i - 1];
+	}
+	for (auto x : p){
+		int i = c[x];
+		p_n[pos[i]] = x;
+		pos[i]++;
+	}
+	p = p_n;
+}
 string s;
 int suff[MAX];
 void solve()
@@ -37,20 +56,22 @@ void solve()
 	}
 	int k = 0;
 	while ((1 << k) < n){
-		vt<pair<pair<int,int>,int>> a(n);
 		for (int i = 0; i < n; i++){
-			a[i] = {{c[i], c[(i + (1 << k)) % n]}, i};
+			p[i] = (p[i] - (1 << k) + n ) % n;
 		}
-		sort(a.begin(),a.end());
-		for (int i = 0; i < n; i++) p[i] = a[i].second;
+		count_sort(p,c);
+		vt<int> c_n(n);
 		c[p[0]] = 0;
 		for (int i = 1; i < n; i++){
-			if (a[i].first == a[i-1].first){
-				c[p[i]] = c[p[i-1]];
+			pair<int,int> prev = {c[p[i - 1]],c[(p[i - 1] + (1 << k)) % n]};
+			pair<int,int> now = {c[p[i]],c[(p[i] + (1 << k)) % n]};
+			if (now == prev){
+				c_n[p[i]] = c_n[p[i-1]];
 			}else {
-				c[p[i]] = c[p[i-1]] + 1; 
+				c_n[p[i]] = c_n[p[i-1]] + 1; 
 			}
 		}
+		c = c_n;
 		k++;
 	}
 	for (int i = 0; i < n; i++){
@@ -73,22 +94,5 @@ int main()
 }
 
 /*
-Examples
-input
-ababba
-output
-6 5 0 2 4 1 3 
-input
-aaaa
-output
-4 3 2 1 0 
-input
-ppppplppp
-output
-9 5 8 4 7 3 6 2 1 0 
-input
-nn
-output
-2 1 0 
-
+-6 -2 0 4 35 #000000#000000
 */
